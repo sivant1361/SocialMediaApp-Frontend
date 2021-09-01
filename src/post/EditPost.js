@@ -3,6 +3,7 @@ import { isAuthenticated } from "../auth";
 import { singlePost, update } from "./apiPost";
 import { Redirect } from "react-router-dom";
 import DefaultPost from "../images/bird.jpg";
+import Loading from "../core/Loading";
 
 export default class EditPost extends Component {
   constructor() {
@@ -172,9 +173,7 @@ export default class EditPost extends Component {
         <h2 className="mt-5 mb-5">{title && "Edit Post"}</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         {loading && (
-          <div className="jumbotron text-center">
-            <h2>Loading...</h2>
-          </div>
+          <Loading/>
         )}
         {!loading && (
           <img

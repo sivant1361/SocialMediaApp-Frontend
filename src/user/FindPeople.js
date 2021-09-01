@@ -3,7 +3,7 @@ import { findPeople, follow } from "./apiUser";
 import { Link } from "react-router-dom";
 import DefaultImage from "../images/avatar.png";
 import { isAuthenticated } from "../auth";
-
+import Loading from "../core/Loading";
 class FindPeople extends Component {
   constructor() {
     super();
@@ -53,7 +53,7 @@ class FindPeople extends Component {
         {users &&
           users.map((user, index) => (
             <div className="col-md-4 col-sm-6 col-xs-12 p-2" key={index}>
-              <div className="card p-4" style={{ backgroundColor: '#333'}}>
+              <div className="card p-4" style={{ backgroundColor: "#333" }}>
                 <img
                   src={`${process.env.REACT_APP_API_URL}/user/photo/${
                     user._id
@@ -93,9 +93,10 @@ class FindPeople extends Component {
         <h2 className="mt-5 mb-5">Find People</h2>
         {open && (
           <div className="alert alert-success">
-            <p style={{color: 'black'}}>{followMessage}</p>
+            <p style={{ color: "black" }}>{followMessage}</p>
           </div>
         )}
+        {users.length===0 && <Loading />}
         {users && this.renderUsers(users)}
       </div>
     );

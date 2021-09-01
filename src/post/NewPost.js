@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { create } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
+import Loading from "../core/Loading";
 
 class NewPost extends Component {
   constructor() {
@@ -80,6 +81,7 @@ class NewPost extends Component {
           <input
             onChange={(event) => this.handleChange(event, "photo")}
             className="form-control"
+            style={{ color: "white" }}
             type="file"
             accept="image/*"
           />
@@ -88,6 +90,7 @@ class NewPost extends Component {
           <label className="text-muted">Title</label>
           <input
             onChange={(event) => this.handleChange(event, "title")}
+            style={{ color: "white" }}
             type="text"
             className="form-control"
             value={title}
@@ -97,6 +100,7 @@ class NewPost extends Component {
           <label className="text-muted">Body</label>
           <input
             onChange={(event) => this.handleChange(event, "body")}
+            style={{ color: "white" }}
             type="text"
             className="form-control"
             value={body}
@@ -127,11 +131,7 @@ class NewPost extends Component {
         >
           <h2>New Post </h2>
           {error && <div className="alert alert-danger">{error}</div>}
-          {loading && (
-            <div className="jumbotron text-center">
-              <h2>Loading...</h2>
-            </div>
-          )}
+          {loading && <Loading />}
 
           {this.newPost({ title, body })}
         </div>

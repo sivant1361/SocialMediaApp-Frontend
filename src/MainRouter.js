@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./auth/PrivateRoute";
 import Menu from "./core/Menu";
 import Home from "./core/Home";
+import Cover from "./core/Cover";
 
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
@@ -16,12 +17,18 @@ import NewPost from "./post/NewPost";
 import SinglePost from "./post/SinglePost";
 import EditPost from "./post/EditPost";
 
+import { isAuthenticated } from "./auth";
+
 const MainRouter = () => {
   return (
-    <div style={{backgroundColor:'#000', minHeight:'100vh'}}>
+    <div>
       <Menu />
       <Switch>
-        <Route exact path="/" component={Home} />
+        {isAuthenticated() ? (
+          <Route exact path="/" component={Home} />
+        ) : (
+          <Route exact path="/" component={Cover} />
+        )}
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signin" component={Signin} />
         <PrivateRoute exact path="/user/:userId" component={Profile} />

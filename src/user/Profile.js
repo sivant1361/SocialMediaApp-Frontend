@@ -7,6 +7,7 @@ import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../post/apiPost";
+import Loading from "../core/Loading";
 class Profile extends Component {
   constructor() {
     super();
@@ -93,22 +94,14 @@ class Profile extends Component {
       return (
         <div className="container">
           <h2 className="mt-5 mb-5">Profile</h2>
-          {loading && (
-            <div className="jumbotron text-center">
-              <h2>Loading...</h2>
-            </div>
-          )}
+          {loading && <Loading />}
         </div>
       );
     } else
       return (
         <div className="container">
           <h2 className="mt-5 mb-5">Profile</h2>
-          {loading && (
-            <div className="jumbotron text-center">
-              <h2>Loading...</h2>
-            </div>
-          )}
+          {loading && <Loading />}
           <div className="row">
             <div className="col-md-4">
               <img

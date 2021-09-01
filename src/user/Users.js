@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { list } from "./apiUser";
 import { Link } from "react-router-dom";
 import DefaultImage from "../images/avatar.png";
+import Loading from "../core/Loading";
 
 class Users extends Component {
   constructor() {
@@ -61,6 +62,7 @@ class Users extends Component {
     return (
       <div className="container">
         <h2 className="mt-5 mb-5">Users</h2>
+        {users.length===0 && <Loading />}
         {this.renderUsers(users)}
       </div>
     );

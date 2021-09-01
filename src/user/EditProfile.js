@@ -3,6 +3,7 @@ import { getUser, update, updateUser } from "./apiUser";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
 import DefaultImage from "../images/avatar.png";
+import Loading from "../core/Loading";
 
 class EditProfile extends Component {
   constructor() {
@@ -205,20 +206,18 @@ class EditProfile extends Component {
       <div className="container">
         <h2 className="mt-5 mb-5">Edit Profile </h2>
         {error && <div className="alert alert-danger">{error}</div>}
-        {loading && (
-          <div className="jumbotron text-center">
-            <h2>Loading...</h2>
-          </div>
-        )}
+        {loading && <Loading />}
 
-        <img
-          src={photoUrl}
-          alt={name}
-          onError={(e) => (e.target.src = DefaultImage)}
-          className="img-thumbnail"
-          style={{ height: "150px", width: "auto" }}
-        />
-        {this.editForm({ name, email, password, about })}
+        {!loading && (
+          <img
+            src={photoUrl}
+            alt={name}
+            onError={(e) => (e.target.src = DefaultImage)}
+            className="img-thumbnail"
+            style={{ height: "150px", width: "auto" }}
+          />
+        )}
+        {!loading && this.editForm({ name, email, password, about })}
       </div>
     );
   }

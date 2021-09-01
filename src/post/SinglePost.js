@@ -4,6 +4,8 @@ import DefaultPost from "../images/bird.jpg";
 import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import Comment from "./Comment";
+import Loading from "../core/Loading";
+import DefaultImage from "../images/avatar.png";
 
 export default class SinglePost extends Component {
   state = {
@@ -92,17 +94,60 @@ export default class SinglePost extends Component {
     const posterId = post.postedBy._id ? post.postedBy._id : "";
     const posterName = post.postedBy.name ? post.postedBy.name : "";
     const { likes, like, comments } = this.state;
+    const person = post.postedBy;
 
     return (
       <div>
-        <div className="card">
-          <div className="card-body" style={{backgroundColor:'#333',text:'white'}}>
+        <div
+          className="card mt-4"
+          style={{ borderRadius: 10, backgroundColor: "#222" }}
+        >
+          <div
+            className="card"
+            style={{ borderRadius: 10, backgroundColor: "#222", padding: 15 }}
+          >
+            <Link
+              to={`/user/${person._id}`}
+              className="row align-items-center ml-2 p-2"
+              style={{ textDecoration: "none" }}
+            >
+              <img
+                className="float-left mr-2"
+                src={`${process.env.REACT_APP_API_URL}/user/photo/${person._id}`}
+                onError={(e) => (e.target.src = DefaultImage)}
+                alt={person.name}
+                style={{
+                  height: "40px",
+                  width: "40px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                  border: "1px solid black",
+                  backgroundColor: "white",
+                  padding: 2,
+                }}
+              />
+              {/* <div style={{ padding: 2, height: "40px" }}>
+                <p>
+                  {person.name}
+                  <br />
+                  <span style={{ fontSize: 10 }}>
+                    {new Date(post.created).toDateString()}
+                  </span>
+                </p>
+              </div> */}
+              <h2 className="ml-2 mt-2">{post && post.title}</h2>
+            </Link>
+          </div>
+          <div
+            className="card-body"
+            style={{ backgroundColor: "#333", text: "white" }}
+          >
             <img
               src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
               onError={(e) => (e.target.src = `${DefaultPost}`)}
               alt={post.title}
               className="img-thumbnail"
-              style={{ height: "20em", width: "100%", objectFit: "cover" }}
+              style={{ height: "40em", width: "100%", objectFit: "cover" }}
             />
             {/* <h5 className="card-title mt-2 mb-2">{post.title}</h5> */}
             {like ? (
@@ -134,9 +179,12 @@ export default class SinglePost extends Component {
             )}
             <p className="card-text mt-4 mb-4">{post.body}</p>
 
-            <p className="font-italic mark" style={{color: 'black'}}>
-              Posted by <Link to={`/user/${posterId}`}>{posterName}</Link> on{" "}
-              {new Date(post.created).toDateString()}
+            <p className="font-italic mark" style={{ color: "black" }}>
+              <span className="ml-2"></span>Posted by{" "}
+              <Link to={`/user/${posterId}`} style={{ textDecoration: "none" }}>
+                {posterName}
+              </Link>{" "}
+              on {new Date(post.created).toDateString()}
             </p>
             <div className="d-inline-block">
               <Link to={`/`} className="btn btn-raised btn-primary btn-sm mr-3">
@@ -184,13 +232,8 @@ export default class SinglePost extends Component {
 
     return (
       <div className="container">
-        <h2 className="mt-5 mb-5">{post && post.title}</h2>
         {/* {this.props.match.params.postId} */}
-        {loading && (
-          <div className="jumbotron text-center">
-            <h2>Loading...</h2>
-          </div>
-        )}
+        {loading && <Loading />}
         {post && this.renderPost(post)}
       </div>
     );

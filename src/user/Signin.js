@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate } from "../auth";
+import Loading from "../core/Loading";
 import SocialLogin from "./SocialLogin";
 
 class Signin extends Component {
@@ -53,16 +54,13 @@ class Signin extends Component {
           <SocialLogin />
           <hr />
           {error && <div className="alert alert-danger">{error}</div>}
-          {loading && (
-            <div className="jumbotron text-center">
-              <h2>Loading...</h2>
-            </div>
-          )}
+          {loading && <Loading />}
           <form>
             <div className="form-group">
               <label className="text-muted">Email</label>
               <input
                 onChange={(event) => this.handleChange(event, "email")}
+                style={{ color: "white" }}
                 type="email"
                 className="form-control"
                 value={email}
@@ -72,6 +70,7 @@ class Signin extends Component {
               <label className="text-muted">Password</label>
               <input
                 onChange={(event) => this.handleChange(event, "password")}
+                style={{ color: "white" }}
                 type="password"
                 className="form-control"
                 value={password}

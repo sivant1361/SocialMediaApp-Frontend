@@ -3,6 +3,7 @@ import { list } from "./apiPost";
 import { Link } from "react-router-dom";
 import DefaultPost from "../images/bird.jpg";
 import DefaultImage from "../images/avatar.png";
+import Loading from "../core/Loading";
 class Posts extends Component {
   constructor() {
     super();
@@ -32,10 +33,10 @@ class Posts extends Component {
       <div>
         {posts &&
           posts.map((post, index) => {
-            const posterId = post.postedBy._id ? post.postedBy._id : "unknown";
-            const posterName = post.postedBy.name
-              ? post.postedBy.name
-              : "unknown";
+            // const posterId = post.postedBy._id ? post.postedBy._id : "unknown";
+            // const posterName = post.postedBy.name
+            //   ? post.postedBy.name
+            //   : "unknown";
 
             const person = post.postedBy;
             // console.log(
@@ -97,21 +98,26 @@ class Posts extends Component {
                           objectFit: "cover",
                         }}
                       />
-                      <h5 className="card-title mt-2">{post.title}</h5>
+                      <h5
+                        className="card-title mt-4"
+                        style={{ fontWeight: "bold",color: "#c5c5c5" }}
+                      >
+                        {post.title}
+                      </h5>
                       <p className="card-text">
                         {post.body.length < 150
                           ? post.body
                           : `${post.body.slice(0, 140)}...`}
                       </p>
 
-                      <p
+                      {/* <p
                         className="font-italic mark"
                         style={{ color: "black" }}
                       >
                         Posted by{" "}
                         <Link to={`/user/${posterId}`}>{posterName}</Link> on{" "}
                         {new Date(post.created).toDateString()}
-                      </p>
+                      </p> */}
                       <Link
                         to={`/post/${post._id}`}
                         className="btn btn-raised btn-primary btn-sm"
@@ -132,7 +138,7 @@ class Posts extends Component {
     const { posts } = this.state;
     return (
       <div className="container">
-        {posts.length === 0 && <h2 className="mt-5 mb-5">{`Loading...`}</h2>}
+        {posts.length === 0 && <Loading />}
         {this.renderPosts(posts)}
       </div>
     );

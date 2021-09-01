@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Allison&family=Dancing+Script&family=Parisienne&display=swap");
+
+* {
+  color: #fff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+  border-bottom: 0.5px solid #fff;
+  color: #fff
+}
+
+.menu-items {
+  font-family: "Dancing Script", cursive;
+}
+
+#skeleton {
+  animation: fadeInUp 2s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#skeleton_more {
+  opacity: 0;
+  animation: fadeSide 2s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeSide {
+  20% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+:root {
+  --primary-white: #fff;
+  --primary-orange: #f5a500;
+  --primary-dark: rgba(255, 255, 255, 0);
+  --primary-red: #ef4035;
+  --primary-hover-red: #f33501;
+}
+
+.btn-main-offer {
+  /* text-decoration: none; */
+  background-color: #23395d;
+  text-transform: uppercase;
+  border-radius: 0;
+  color: var(--primary-white);
+  margin-top: 1.5vw;
+  border-radius: 6px;
+  padding: 0.625rem 0.75rem 0.75rem 0.75rem;
+}
+
+.btn-main-offer:hover {
+  background-color: #123;
+  color: var(--primary-white);
+  transition: 0.2s ease-out;
+}

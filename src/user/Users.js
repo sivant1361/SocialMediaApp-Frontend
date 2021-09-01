@@ -18,7 +18,9 @@ class Users extends Component {
       } else {
         this.setState({ users: data.users });
       }
-    });
+    }).catch(err =>{
+      console.log(err);
+    })
   }
 
   renderUsers(users) {
@@ -27,7 +29,7 @@ class Users extends Component {
         {users &&
           users.map((user, index) => (
             <div className="col-md-4 col-sm-6 col-xs-12 p-2" key={index}>
-              <div className="card p-2">
+              <div className="card p-4" style={{ backgroundColor: '#333'}}>
                 <img
                   src={`${process.env.REACT_APP_API_URL}/user/photo/${
                     user._id

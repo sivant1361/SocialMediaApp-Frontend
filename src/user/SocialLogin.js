@@ -21,17 +21,21 @@ class SocialLogin extends Component {
       imageUrl: imageUrl,
     };
     // console.log("user obj to social login: ", user);
-    socialLogin(user).then((data) => {
-      console.log("signin data: ", data);
-      if (data.error) {
-        console.log("Error Login. Please try again..");
-      } else {
-        console.log("signin success - setting jwt: ", data);
-        authenticate(data, () => {
-          this.setState({ redirectToReferrer: true });
-        });
-      }
-    });
+    socialLogin(user)
+      .then((data) => {
+        console.log("signin data: ", data);
+        if (data.error) {
+          console.log("Error Login. Please try again..");
+        } else {
+          console.log("signin success - setting jwt: ", data);
+          authenticate(data, () => {
+            this.setState({ redirectToReferrer: true });
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -42,12 +46,15 @@ class SocialLogin extends Component {
     }
 
     return (
-      <GoogleLogin
-        clientId="41166456655-rmhoe5prao7dhnt0boo0v2njvgdp5bj5.apps.googleusercontent.com"
-        buttonText="Login with Google"
-        onSuccess={this.responseGoogle}
-        onFailure={this.responseGoogle}
-      />
+      <div style={{ color: "black" }}>
+        <GoogleLogin
+          clientId="41166456655-rmhoe5prao7dhnt0boo0v2njvgdp5bj5.apps.googleusercontent.com"
+          buttonText="Login with Google"
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+          theme="dark"
+        />
+      </div>
     );
   }
 }

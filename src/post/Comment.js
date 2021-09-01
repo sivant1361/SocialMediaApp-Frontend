@@ -83,7 +83,7 @@ export default class Comment extends Component {
       return <Redirect to="/signin" />;
     }
     return (
-      <div>
+      <div >
         {/* {JSON.stringify(comments)} */}
         <h2 className="mt-5 mb-2">Leave a Comment</h2>
         {error && <div className="alert alert-danger">{error}</div>}
@@ -92,6 +92,7 @@ export default class Comment extends Component {
             <input
               type="text"
               className="form-control"
+              style={{color: 'white',borderColor:'white'}}
               onChange={this.handleChange}
               value={this.state.text}
             />
@@ -107,7 +108,7 @@ export default class Comment extends Component {
           {comments.map((comment, index) => {
             console.log(comment);
             return (
-              <div key={index}>
+              <div key={index} >
                 <Link to={`/user/${comment.postedBy._id}`}>
                   <img
                     className="float-left mr-2"
@@ -125,7 +126,7 @@ export default class Comment extends Component {
                 </Link>
                 <div>
                   <p className="lead">{comment.text}</p>
-                  <p className="font-italic mark">
+                  <p className="font-italic mark" style={{color: 'black'}}>
                     Posted by{" "}
                     <Link to={`/user/${comment.postedBy._id}`}>
                       {comment.postedBy.name}

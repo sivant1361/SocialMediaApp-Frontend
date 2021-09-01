@@ -96,7 +96,7 @@ export default class SinglePost extends Component {
     return (
       <div>
         <div className="card">
-          <div className="card-body">
+          <div className="card-body" style={{backgroundColor:'#333',text:'white'}}>
             <img
               src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
               onError={(e) => (e.target.src = `${DefaultPost}`)}
@@ -134,7 +134,7 @@ export default class SinglePost extends Component {
             )}
             <p className="card-text mt-4 mb-4">{post.body}</p>
 
-            <p className="font-italic mark">
+            <p className="font-italic mark" style={{color: 'black'}}>
               Posted by <Link to={`/user/${posterId}`}>{posterName}</Link> on{" "}
               {new Date(post.created).toDateString()}
             </p>

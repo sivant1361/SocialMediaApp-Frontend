@@ -48,41 +48,43 @@ class Signin extends Component {
 
     return (
       <div className="container">
-        <h2 className="mt-5 mb-5">Signin</h2>
-        <SocialLogin />
-        <hr />
-        {error && <div className="alert alert-danger">{error}</div>}
-        {loading && (
-          <div className="jumbotron text-center">
-            <h2>Loading...</h2>
-          </div>
-        )}
-        <form>
-          <div className="form-group">
-            <label className="text-muted">Email</label>
-            <input
-              onChange={(event) => this.handleChange(event, "email")}
-              type="email"
-              className="form-control"
-              value={email}
-            />
-          </div>
-          <div className="form-group">
-            <label className="text-muted">Password</label>
-            <input
-              onChange={(event) => this.handleChange(event, "password")}
-              type="password"
-              className="form-control"
-              value={password}
-            />
-          </div>
-          <button
-            onClick={this.handleSubmit}
-            className="btn btn-raised btn-primary"
-          >
-            Signin
-          </button>
-        </form>
+        <div className="mt-5" style={{ backgroundColor: "#333", padding: 40 }}>
+          <h2 className="mb-5">Login</h2>
+          <SocialLogin />
+          <hr />
+          {error && <div className="alert alert-danger">{error}</div>}
+          {loading && (
+            <div className="jumbotron text-center">
+              <h2>Loading...</h2>
+            </div>
+          )}
+          <form>
+            <div className="form-group">
+              <label className="text-muted">Email</label>
+              <input
+                onChange={(event) => this.handleChange(event, "email")}
+                type="email"
+                className="form-control"
+                value={email}
+              />
+            </div>
+            <div className="form-group">
+              <label className="text-muted">Password</label>
+              <input
+                onChange={(event) => this.handleChange(event, "password")}
+                type="password"
+                className="form-control"
+                value={password}
+              />
+            </div>
+            <button
+              onClick={this.handleSubmit}
+              className="btn btn-raised btn-primary"
+            >
+              Signin
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

@@ -121,15 +121,20 @@ class NewPost extends Component {
 
     return (
       <div className="container">
-        <h2 className="mt-5 mb-5">New Post </h2>
-        {error && <div className="alert alert-danger">{error}</div>}
-        {loading && (
-          <div className="jumbotron text-center">
-            <h2>Loading...</h2>
-          </div>
-        )}
+        <div
+          className="mt-5 mb-5"
+          style={{ backgroundColor: "#333", padding: 40 }}
+        >
+          <h2>New Post </h2>
+          {error && <div className="alert alert-danger">{error}</div>}
+          {loading && (
+            <div className="jumbotron text-center">
+              <h2>Loading...</h2>
+            </div>
+          )}
 
-        {this.newPost({ title, body })}
+          {this.newPost({ title, body })}
+        </div>
       </div>
     );
   }

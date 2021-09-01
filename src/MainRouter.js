@@ -18,7 +18,7 @@ import EditPost from "./post/EditPost";
 
 const MainRouter = () => {
   return (
-    <div>
+    <div style={{backgroundColor:'#000', minHeight:'100vh'}}>
       <Menu />
       <Switch>
         <Route exact path="/" component={Home} />

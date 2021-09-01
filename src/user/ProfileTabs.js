@@ -27,6 +27,8 @@ class ProfileTabs extends Component {
                         objectFit: "cover",
                         borderRadius: "50%",
                         border: "1px solid black",
+                        backgroundColor: "white",
+                        padding: 1,
                       }}
                     />
                     <div>
@@ -55,6 +57,8 @@ class ProfileTabs extends Component {
                         objectFit: "cover",
                         borderRadius: "50%",
                         border: "1px solid black",
+                        backgroundColor: "white",
+                        padding: 1,
                       }}
                     />
                     <div>

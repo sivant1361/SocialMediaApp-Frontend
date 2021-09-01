@@ -85,15 +85,17 @@ class Signup extends Component {
     const { error, open } = this.state;
     return (
       <div className="container">
-        <h2 className="mt-5 mb-5">Signup</h2>
-        {error && <div className="alert alert-danger">{error}</div>}
-        {open && (
-          <div className="alert alert-info">
-            New account successfully created. Please{" "}
-            <Link to="/signin">Sign In</Link>
-          </div>
-        )}
-        {this.signupForm()}
+        <div className="mt-5" style={{ backgroundColor: "#333", padding: 40 }}>
+          <h2 className=" mb-5">Signup</h2>
+          {error && <div className="alert alert-danger">{error}</div>}
+          {open && (
+            <div className="alert alert-info">
+              New account successfully created. Please{" "}
+              <Link to="/signin">Sign In</Link>
+            </div>
+          )}
+          {this.signupForm()}
+        </div>
       </div>
     );
   }

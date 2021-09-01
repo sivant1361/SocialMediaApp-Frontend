@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { list } from "./apiPost";
 import { Link } from "react-router-dom";
 import DefaultPost from "../images/bird.jpg";
-
+import DefaultImage from "../images/avatar.png";
 class Posts extends Component {
   constructor() {
     super();
@@ -12,60 +12,113 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    list().then((data) => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        // console.log(data.posts);
-        this.setState({ posts: data });
-      }
-    });
+    list()
+      .then((data) => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          // console.log(data.posts);
+          this.setState({ posts: data });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   renderPosts(posts) {
     // console.log(posts);
     return (
-      <div className="row">
+      <div>
         {posts &&
           posts.map((post, index) => {
-            const posterId = post.postedBy._id ? post.postedBy._id : "";
-            const posterName = post.postedBy.name ? post.postedBy.name : "";
+            const posterId = post.postedBy._id ? post.postedBy._id : "unknown";
+            const posterName = post.postedBy.name
+              ? post.postedBy.name
+              : "unknown";
+
+            const person = post.postedBy;
             // console.log(
             //   `${process.env.REACT_APP_API_URL}/post/photo/${post._id}`
             // );
             return (
-              <div className="col-md-4 col-sm-6 col-xs-12 p-2" key={index}>
-                <div className="card p-2">
-                  <div className="card-body">
-                    <img
-                      src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
-                      onError={(e) => (e.target.src = `${DefaultPost}`)}
-                      alt={post.title}
-                      className="img-thumbnail"
-                      style={{
-                        height: "200px",
-                        width: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                    <h5 className="card-title mt-2">{post.title}</h5>
-                    <p className="card-text">
-                      {post.body.length < 50
-                        ? post.body
-                        : `${post.body.slice(0, 40)}...`}
-                    </p>
-
-                    <p className="font-italic mark">
-                      Posted by{" "}
-                      <Link to={`/user/${posterId}`}>{posterName}</Link> on{" "}
-                      {new Date(post.created).toDateString()}
-                    </p>
-                    <Link
-                      to={`/post/${post._id}`}
-                      className="btn btn-raised btn-primary btn-sm"
+              <div className="row justify-content-center" key={index}>
+                <div
+                  className="col-md-12 col-sm-12 col-xs-12 p-2 mt-2 mb-4"
+                  style={{ borderRadius: 10, backgroundColor: "#333" }}
+                >
+                  <div style={{ backgroundColor: "#333" }}>
+                    <div
+                      className="card"
+                      style={{ borderRadius: 10, backgroundColor: "#222" }}
                     >
-                      Read More
-                    </Link>
+                      <Link
+                        to={`/user/${person._id}`}
+                        className="row align-items-center ml-2 p-2"
+                      >
+                        <img
+                          className="float-left mr-2"
+                          src={`${process.env.REACT_APP_API_URL}/user/photo/${person._id}`}
+                          onError={(e) => (e.target.src = DefaultImage)}
+                          alt={person.name}
+                          style={{
+                            height: "40px",
+                            width: "40px",
+                            objectFit: "cover",
+                            borderRadius: "50%",
+                            border: "1px solid black",
+                            backgroundColor: "white",
+                            padding: 2,
+                          }}
+                        />
+                        <div style={{ padding: 2, height: "40px" }}>
+                          <p>
+                            {person.name}
+                            <br />
+                            <span style={{ fontSize: 10 }}>
+                              {new Date(post.created).toDateString()}
+                            </span>
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+                    <div
+                      className="card-body"
+                      style={{ backgroundColor: "#333" }}
+                    >
+                      <img
+                        src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
+                        onError={(e) => (e.target.src = `${DefaultPost}`)}
+                        alt={post.title}
+                        className="img-thumbnail"
+                        style={{
+                          height: "300px",
+                          width: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                      <h5 className="card-title mt-2">{post.title}</h5>
+                      <p className="card-text">
+                        {post.body.length < 150
+                          ? post.body
+                          : `${post.body.slice(0, 140)}...`}
+                      </p>
+
+                      <p
+                        className="font-italic mark"
+                        style={{ color: "black" }}
+                      >
+                        Posted by{" "}
+                        <Link to={`/user/${posterId}`}>{posterName}</Link> on{" "}
+                        {new Date(post.created).toDateString()}
+                      </p>
+                      <Link
+                        to={`/post/${post._id}`}
+                        className="btn btn-raised btn-primary btn-sm"
+                      >
+                        Read More
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -79,9 +132,7 @@ class Posts extends Component {
     const { posts } = this.state;
     return (
       <div className="container">
-        <h2 className="mt-5 mb-5">
-          {posts.length === 0 ? `Loading...` : `Recent Posts`}
-        </h2>
+        {posts.length === 0 && <h2 className="mt-5 mb-5">{`Loading...`}</h2>}
         {this.renderPosts(posts)}
       </div>
     );

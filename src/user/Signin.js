@@ -47,45 +47,51 @@ class Signin extends Component {
       return <Redirect to="/" />;
     }
 
-    return (
-      <div className="container">
-        <div className="mt-5" style={{ backgroundColor: "#333", padding: 40 }}>
-          <h2 className="mb-5">Login</h2>
-          <SocialLogin />
-          <hr />
-          {error && <div className="alert alert-danger">{error}</div>}
-          {loading && <Loading />}
-          <form>
-            <div className="form-group">
-              <label className="text-muted">Email</label>
-              <input
-                onChange={(event) => this.handleChange(event, "email")}
-                style={{ color: "white" }}
-                type="email"
-                className="form-control"
-                value={email}
-              />
-            </div>
-            <div className="form-group">
-              <label className="text-muted">Password</label>
-              <input
-                onChange={(event) => this.handleChange(event, "password")}
-                style={{ color: "white" }}
-                type="password"
-                className="form-control"
-                value={password}
-              />
-            </div>
-            <button
-              onClick={this.handleSubmit}
-              className="btn btn-raised btn-primary"
-            >
-              Signin
-            </button>
-          </form>
+    if (loading) {
+      return <Loading />;
+    } else
+      return (
+        <div className="container">
+          <div
+            className="mt-5"
+            style={{ backgroundColor: "#333", padding: 40 }}
+          >
+            <h2 className="mb-5">Login</h2>
+            <SocialLogin />
+            <hr />
+            {error && <div className="alert alert-danger">{error}</div>}
+
+            <form>
+              <div className="form-group">
+                <label className="text-muted">Email</label>
+                <input
+                  onChange={(event) => this.handleChange(event, "email")}
+                  style={{ color: "white" }}
+                  type="email"
+                  className="form-control"
+                  value={email}
+                />
+              </div>
+              <div className="form-group">
+                <label className="text-muted">Password</label>
+                <input
+                  onChange={(event) => this.handleChange(event, "password")}
+                  style={{ color: "white" }}
+                  type="password"
+                  className="form-control"
+                  value={password}
+                />
+              </div>
+              <button
+                onClick={this.handleSubmit}
+                className="btn btn-raised btn-primary"
+              >
+                Signin
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 }
 

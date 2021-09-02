@@ -125,6 +125,7 @@ class EditProfile extends Component {
           <input
             onChange={(event) => this.handleChange(event, "photo")}
             className="form-control"
+            style={{ color: "white" }}
             type="file"
             accept="image/*"
           />
@@ -133,6 +134,7 @@ class EditProfile extends Component {
           <label className="text-muted">Name</label>
           <input
             onChange={(event) => this.handleChange(event, "name")}
+            style={{ color: "white" }}
             type="text"
             className="form-control"
             value={name}
@@ -142,6 +144,7 @@ class EditProfile extends Component {
           <label className="text-muted">About</label>
           <input
             onChange={(event) => this.handleChange(event, "about")}
+            style={{ color: "white" }}
             type="text"
             className="form-control"
             value={about}
@@ -151,6 +154,7 @@ class EditProfile extends Component {
           <label className="text-muted">Email</label>
           <input
             onChange={(event) => this.handleChange(event, "email")}
+            style={{ color: "white" }}
             type="email"
             className="form-control"
             value={email}
@@ -160,6 +164,7 @@ class EditProfile extends Component {
           <label className="text-muted">Password</label>
           <input
             onChange={(event) => this.handleChange(event, "password")}
+            style={{ color: "white" }}
             type="password"
             className="form-control"
             value={password}

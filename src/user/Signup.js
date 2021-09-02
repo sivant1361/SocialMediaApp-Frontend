@@ -48,6 +48,7 @@ class Signup extends Component {
           <label className="text-muted">Name</label>
           <input
             onChange={(event) => this.handleChange(event, "name")}
+            style={{ color: "white" }}
             type="text"
             className="form-control"
             value={name}
@@ -57,6 +58,7 @@ class Signup extends Component {
           <label className="text-muted">Email</label>
           <input
             onChange={(event) => this.handleChange(event, "email")}
+            style={{ color: "white" }}
             type="email"
             className="form-control"
             value={email}
@@ -66,6 +68,7 @@ class Signup extends Component {
           <label className="text-muted">Password</label>
           <input
             onChange={(event) => this.handleChange(event, "password")}
+            style={{ color: "white" }}
             type="password"
             className="form-control"
             value={password}

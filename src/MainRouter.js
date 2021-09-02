@@ -24,12 +24,12 @@ const MainRouter = () => {
     <div>
       <Menu />
       <Switch>
-        <Route exact path="/" component={Home} />
-        {/* {isAuthenticated() ? (
+        {/* <Route exact path="/" component={Home} /> */}
+        {isAuthenticated() ? (
           <Route exact path="/" component={Home} />
         ) : (
           <Route exact path="/" component={Cover} />
-        )} */}
+        )}
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signin" component={Signin} />
         <PrivateRoute exact path="/user/:userId" component={Profile} />

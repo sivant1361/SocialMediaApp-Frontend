@@ -110,6 +110,7 @@ export default class EditPost extends Component {
           <input
             onChange={(event) => this.handleChange(event, "photo")}
             className="form-control"
+            style={{color:'white'}}
             type="file"
             accept="image/*"
           />
@@ -118,6 +119,7 @@ export default class EditPost extends Component {
           <label className="text-muted">Title</label>
           <input
             onChange={(event) => this.handleChange(event, "title")}
+            style={{color:'white'}}
             type="text"
             className="form-control"
             value={title}
@@ -127,6 +129,7 @@ export default class EditPost extends Component {
           <label className="text-muted">Body</label>
           <input
             onChange={(event) => this.handleChange(event, "body")}
+            style={{color:'white'}}
             type="text"
             className="form-control"
             value={body}
